@@ -16,7 +16,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-group = "org.example"
+group = "com.payserver.membership"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -33,9 +33,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("javax.persistence:javax.persistence-api:2.2")
-
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     testImplementation("com.tngtech.archunit:archunit:1.0.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+
+    runtimeOnly("com.h2database:h2")
 }
 
 tasks.test {
