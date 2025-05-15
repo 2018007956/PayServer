@@ -1,6 +1,5 @@
 package com.payserver.membership.application.service;
 
-import com.payserver.membership.adapter.out.persistence.MembershipJpaEntity;
 import com.payserver.membership.adapter.out.persistence.MembershipMapper;
 import com.payserver.membership.application.port.in.RegisterMembershipCommand;
 import com.payserver.membership.application.port.in.RegisterMembershipUseCase;
@@ -20,19 +19,16 @@ public class RegisterMembershipService implements RegisterMembershipUseCase {
     private final MembershipMapper membershipMapper;
 
     @Override
-    public Membership registerMembership(RegisterMembershipCommand command) {
+    public void registerMembership(RegisterMembershipCommand command) {
         
         // command 받아서 DB 통신
         //biz logic -> (port, adapter) -> DB : external system
-        MembershipJpaEntity jpaEntity = registerMembershipPort.createMembership(
+        registerMembershipPort.createMembership(
             new Membership.MembershipName(command.getName()),
             new Membership.MembershipEmail(command.getEmail()),
             new Membership.MembershipAddress(command.getAddress()),
             new Membership.MembershipIsValid(command.isValid()),
             new Membership.MembershipIsCorp(command.isCorp())
         );
-
-        // entity -> Membership
-        return membershipMapper.mapToDomainEntity(jpaEntity);
     }
 }

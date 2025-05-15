@@ -12,7 +12,7 @@ class MembershipPersistenceAdapter implements RegisterMembershipPort {
     private final SpringDataMembershipRepository membershipRepository;
     @Override
     // DB 연동
-    public MembershipJpaEntity createMembership(Membership.MembershipName membershipName
+    public void createMembership(Membership.MembershipName membershipName
             , Membership.MembershipEmail membershipEmail
             , Membership.MembershipAddress membershipAddress
             , Membership.MembershipIsValid membershipIsValid
@@ -27,6 +27,5 @@ class MembershipPersistenceAdapter implements RegisterMembershipPort {
                         membershipIsCorp.isCorpValue()
                 )
         );
-        return null;
     }
 }

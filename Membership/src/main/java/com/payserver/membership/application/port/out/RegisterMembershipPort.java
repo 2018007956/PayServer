@@ -1,10 +1,9 @@
 package com.payserver.membership.application.port.out;
 
-import com.payserver.membership.adapter.out.persistence.MembershipJpaEntity;
 import com.payserver.membership.domain.Membership;
 
 public interface RegisterMembershipPort {
-    MembershipJpaEntity createMembership(
+    void createMembership(
         Membership.MembershipName membershipName
         , Membership.MembershipEmail membershipEmail
         , Membership.MembershipAddress membershipAddress

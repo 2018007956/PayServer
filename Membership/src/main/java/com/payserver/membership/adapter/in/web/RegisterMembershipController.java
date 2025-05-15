@@ -2,7 +2,6 @@ package com.payserver.membership.adapter.in.web;
 
 import com.payserver.membership.application.port.in.RegisterMembershipCommand;
 import com.payserver.membership.application.port.in.RegisterMembershipUseCase;
-import com.payserver.membership.domain.Membership;
 import common.WebAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +15,7 @@ public class RegisterMembershipController {
 
     private final RegisterMembershipUseCase registerMembershipUseCase;
     @PostMapping(path = "/membership/register")
-    Membership registerMembership(@RequestBody RegisterMembershipRequest request) {
+    void registerMembership(@RequestBody RegisterMembershipRequest request) {
 
         // request -> Command (추상화 계층)
         RegisterMembershipCommand command = RegisterMembershipCommand.builder()
@@ -28,6 +27,6 @@ public class RegisterMembershipController {
                 .build();
 
         // Usecase
-        return registerMembershipUseCase.registerMembership(command);
+        registerMembershipUseCase.registerMembership(command);
     }
 }
